@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\HomeController;
+namespace Libs;
 
 class Core
 {
@@ -12,9 +12,36 @@ class Core
 
         if (empty($url[0])) {
             require_once '../app/controllers/homeController.php';
-            $controller = new HomeController();
+            $controller = new \App\Controllers\HomeController();
             $controller->index();
             return false;
+        }
+
+        $file_controller = '../app/controllers/' . $url[0] . 'Controller.php';
+
+        if (file_exists($file_controller)) {
+            require_once $file_controller;
+            $controller_name = '\\App\\Controllers\\' . $url[0] . 'Controller';
+            $controller = new $controller_name();
+
+            $nelementos = sizeof($url);
+            if ($nelementos >= 2) {
+                if (method_exists($controller, $url[1])) {
+                    if ($nelementos >= 3) {
+                        $param  = [];
+                        for ($i = 2; $i < $nelementos; $i++) {
+                            array_push($param, $url[$i]);
+                        }
+                        $controller->{$url[1]}($param);
+                    }
+                } else {
+                    echo "La accion {$url[1]} No Existe";
+                }
+            } else {
+                $controller->index();
+            }
+        } else {
+            echo "Controlador {$url[0]} NO existe";
         }
 
         myEchoPre($url);
