@@ -1,0 +1,23 @@
+{
+    "name": "tlq/mibodegaweb",
+    "description": "Software de ventas online",
+    "type": "project",
+    "license": "propietary",
+    "authors": [
+        {
+            "name": "TLQ","email": "clocquis@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Libs\\":"libs/",
+            "App\\Controllers\\":"app/controllers/"
+        },
+        "files": [
+            "app/helpers/helpers.php"
+        ]
+    },
+    "require": {
+"jenssegers/blade": "^1.4"        
+    }
+}
