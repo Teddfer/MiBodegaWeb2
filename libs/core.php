@@ -33,6 +33,8 @@ class Core
                             array_push($param, $url[$i]);
                         }
                         $controller->{$url[1]}($param);
+                    } else {
+                        $controller->{$url[1]}();
                     }
                 } else {
                     echo "La accion {$url[1]} No Existe";
@@ -43,7 +45,5 @@ class Core
         } else {
             echo "Controlador {$url[0]} NO existe";
         }
-
-        myEchoPre($url);
     }
 }
