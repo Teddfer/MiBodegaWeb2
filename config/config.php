@@ -1,3 +1,3 @@
 <?php
 
-define('URL', 'http://mibodegaweb.test/');
+define('URL', myEnv('APP_URL'));
