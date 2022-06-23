@@ -2,9 +2,10 @@
 
 namespace App\Interfaces;
 
-interface ICategoriaServices
+interface IProductoService
 {
-    public function getAll();
+
+    public function getAll(bool $estado);
     public function get(int $id);
     public function insert($obj);
     public function update($obj);

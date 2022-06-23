@@ -2,25 +2,22 @@
 
 namespace App\Controllers;
 
-use App\Interfaces\ICategoriaServices;
-use App\Services\CategoriaServices;
+use App\Services\CategoriaService;
 use Jenssegers\Blade\Blade;
 use Libs\Controller;
 
 class CategoriaController extends Controller
 {
-    private CategoriaServices $service;
+    private $service;
 
-    public function __construct(ICategoriaServices $service)
+    public function __construct(CategoriaService $service)
     {
         $this->service = $service;
-        $this->loadBlade();
     }
 
     public function index()
     {
         $data = $this->service->getAll();
         myEchoPre($data);
-        //echo $this->blade->make('home.index', ['name' => 'Teddy'])->render();
     }
 }
