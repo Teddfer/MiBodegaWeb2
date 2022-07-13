@@ -19,8 +19,30 @@ if (!function_exists('myEnv')) {
     {
         if (array_key_exists($key, $_ENV)) {
             return $_ENV[$key];
-        }else {
+        } else {
             return $default;
+        }
+    }
+}
+
+if (!function_exists('selected')) {
+    function selected($id_current, $id_new)
+    {
+        if ($id_current == $id_new) {
+            return 'selected=selected';
+        } else {
+            return '';
+        }
+    }
+}
+
+if (!function_exists('checked')) {
+    function checked(bool $estado)
+    {
+        if ($estado) {
+            return 'checked=checked';
+        } else {
+            return '';
         }
     }
 }

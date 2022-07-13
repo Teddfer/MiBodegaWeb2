@@ -1,5 +1,6 @@
 <?php
 
+use Libs\ContainerDI;
 use Libs\Core;
 
 require_once "../vendor/autoload.php";
@@ -13,4 +14,4 @@ $dotenv->load();
 
 require_once "../config/config.php";
 
-$core = new Core();
+$core = new Core(new ContainerDI);

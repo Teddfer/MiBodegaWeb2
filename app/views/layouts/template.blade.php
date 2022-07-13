@@ -129,6 +129,8 @@
         <script src="{{URL}}js/scrollUp.min.js"></script>
         <!-- Main/Activator js -->
         <script src="{{URL}}js/main.js"></script>
+        
+        @yield('scripts')
 </body>
 
 <!-- index30:23-->

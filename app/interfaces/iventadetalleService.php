@@ -2,9 +2,9 @@
 
 namespace App\Interfaces;
 
-interface IProductoService
+interface IVentaDetalleService
 {
-    public function getAll(bool $estado);
+    public function getAll();
     public function get(int $id);
     public function insert($obj);
     public function update($obj);
