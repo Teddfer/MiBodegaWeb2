@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 if (!function_exists('myEchoPre')) {
     function myEchoPre($content)
     {
@@ -39,10 +41,11 @@ if (!function_exists('selected')) {
 if (!function_exists('checked')) {
     function checked(bool $estado)
     {
-        if ($estado) {
-            return 'checked=checked';
-        } else {
-            return '';
+        if (!is_null($estado)) {
+            if ($estado) {
+                return 'checked=checked';
+            }
         }
+        return '';
     }
 }

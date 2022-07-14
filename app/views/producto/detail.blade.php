@@ -62,11 +62,10 @@
             </div>
         </div>
         <input type="hidden" name="IdProducto" value="{{$data->IdProducto}}">
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
+        <div class="row justify-content-right">
+            <div class="col modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
             </div>
         </div>
     </form>
