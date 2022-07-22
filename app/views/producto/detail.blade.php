@@ -4,7 +4,7 @@
 
 {{--@section('content')--}}
 <div class="container">
-    <form action="{{URL.'producto/save'}}" method="POST">
+    <form action="{{URL.'producto/save'}}" method="POST" id="myForm">
         <div class="row">
             <div class="col">
                 <div class="form-group">
@@ -70,4 +70,6 @@
         </div>
     </form>
 </div>
+
+
 {{--@endsection--}}

@@ -71,19 +71,39 @@ class ProductoController extends Controller
         $obj->Estado = isset($_POST['Estado']) ? 1 : 0;
 
         if ($id > 0) {
-            $this->service->update($obj);
+            $rpta = $this->service->update($obj);
         } else {
-            $this->service->insert($obj);
+            $rpta = $this->service->insert($obj);
         }
-        header("Location:" . URL . "producto/index");
+
+        if ($rpta) {
+            $response = [
+                'success' => true,
+                'message' => 'Producto guardado correctamente',
+                'redirection' => URL . 'producto/index'
+            ];
+        }
+
+        echo json_encode($response);
+
+        //header("Location:" . URL . "producto/index");
     }
 
     public function delete($param = null)
     {
-        $id = isset($param[0]) ? ($param[0]) : 0;
+        $id = $param[0] ?? 0;
         if ($id > 0) {
-            $this->service->delete($id);
-            header("Location:" . URL . "producto/index");
+            $rpta = $this->service->delete($id);
         }
+
+        if ($rpta) {
+            $response = [
+                'success' => true,
+                'message' => 'Producto eliminado correctamente',
+                'redirection' => URL . 'producto/index'
+            ];
+        }
+
+        echo json_encode($response);
     }
 }
