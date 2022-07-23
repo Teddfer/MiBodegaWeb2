@@ -10,18 +10,18 @@
 <div class="container">
     <div class="row">
         <div class="col-2">
-            <a href="{{URL.'producto/detail'}}" is-modal="true" id="nuevo">Nuevo</a>
+            <a class="btn btn-success btn-sm" href="{{URL.'producto/detail'}}" is-modal="true" id="nuevo">Nuevo</a>
         </div>
     </div>
 <table>
         <thead>
             <tr>
                 <th style="width: 5%">ID</th>
-                <th style="width: 35%">NOMBRE</th>
+                <th style="width: 33%">NOMBRE</th>
                 <th style="width: 10%">P. VENTA</th>
                 <th style="width: 10%">P. COSTO</th>
                 <th style="width: 5%">STOCK</th>
-                <th style="width: 5%">STOCK MINIMO</th>
+                <th style="width: 7%">STOCK MINIMO</th>
                 <th style="width: 10%">CATEGORIA</th>
                 <th style="width: 10%">MARCA</th>
                 <th style="width: 10%"></th>
@@ -39,18 +39,18 @@
                     <td>{{$item->categorias}}</td>
                     <td>{{$item->marcas}}</td>
                     <td>
-                        <button 
-                        class="btn btn-danger btn-sm"
-                        is-modal="true" 
-                        href='{{URL."producto/detail/{$item->IdProducto}/{$item->IdCategoria}/{$item->IdMarca}"}}'>
-                        <i class="fa fa-pencil"></i>
-                        </button>
+                        <a 
+                            class="btn btn-danger btn-sm"
+                            is-modal="true" 
+                            href='{{URL."producto/detail/{$item->IdProducto}/{$item->IdCategoria}/{$item->IdMarca}"}}'>
+                            <i class="fa fa-pencil"></i>
+                        </a>
 
                         <button 
-                        class="btn btn-primary btn-sm"
-                        my-name="{{{$item->Nombre}}}" 
-                        my-action='{{URL."producto/delete/{$item->IdProducto}"}}' onclick="remove(this)">
-                        <i class="fa fa-trash"></i>
+                            class="btn btn-primary btn-sm"
+                            my-name="{{{$item->Nombre}}}" 
+                            my-action='{{URL."producto/delete/{$item->IdProducto}"}}' onclick="remove(this)">
+                            <i class="fa fa-trash"></i>
                         </button>
                     </td>
                 </tr>

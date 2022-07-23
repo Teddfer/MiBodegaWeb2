@@ -2,20 +2,17 @@
 
 namespace App\Controllers;
 
-use App\Interfaces\ICategoriaService;
+use App\Interfaces\IMarcaService;
 use App\Services\CategoriaService;
 use Jenssegers\Blade\Blade;
 use Libs\Controller;
 use Libs\Database;
-use stdClass;
 
-class CategoriaController extends Controller
+class MarcaController extends Controller
 {
-    private readonly ICategoriaService $service;
+    private IMarcaService $service;
 
-    public function __construct(
-        
-        ICategoriaService $service)
+    public function __construct(IMarcaService $service)
     {
         $this->service = $service;
         $this->loadBlade();
@@ -24,7 +21,7 @@ class CategoriaController extends Controller
     public function index()
     {
         $data = $this->service->getAllSimple(true);
-        echo $this->blade->render('categoria.index', ['data' => $data]);
+        echo $this->blade->render('marca.index', ['data' => $data]);
     }
 
     public function detail($param = null)
@@ -33,16 +30,16 @@ class CategoriaController extends Controller
 
         $data = $this->service->get($id);
 
-        echo $this->blade->render('categoria.detail', [
+        echo $this->blade->render('marca.detail', [
             'data' => $data
         ]);
     }
 
     public function save()
     {
-        $id = isset($_POST['IdCategoria']) ? intval($_POST['IdCategoria']) : 0;
+        $id = isset($_POST['IdMarca']) ? intval($_POST['IdMarca']) : 0;
         $obj = new \stdClass();
-        $obj->IdCategoria = $id;
+        $obj->IdMarca = $id;
         $obj->Nombre = $_POST['Nombre'];
         $obj->Descripcion = $_POST['Descripcion'];
 
@@ -55,8 +52,8 @@ class CategoriaController extends Controller
         if ($rpta) {
             $response = [
                 'success' => true,
-                'message' => 'Categoria guardada correctamente',
-                'redirection' => URL . 'categoria/index'
+                'message' => 'Marca guardada correctamente',
+                'redirection' => URL . 'marca/index'
             ];
         }
 
@@ -73,12 +70,12 @@ class CategoriaController extends Controller
         if ($rpta) {
             $response = [
                 'success' => true,
-                'message' => 'Categoria eliminada correctamente',
-                'redirection' => URL . 'categoria/index'
+                'message' => 'Marca eliminada correctamente',
+                'redirection' => URL . 'marca/index'
             ];
         }
 
         echo json_encode($response);
+    
     }
-
 }

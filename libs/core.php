@@ -46,7 +46,37 @@ class Core
                             
                         );
                         break;
-                    case 'algo':
+                    case 'iventaservice':
+                        $controller = new $controller_name(
+                            $container->getContainer()->get('iventaservice'),
+                            $container->getContainer()->get('iclienteservice')
+                        );
+                        break;
+                    case 'iusuarioservice':
+                        $controller = new $controller_name(
+                            $container->getContainer()->get('iusuarioservice'),
+                            $container->getContainer()->get('iusuariotiposervice')
+                        );
+                        break;
+                    case 'ipermisoservice':
+                        $controller = new $controller_name(
+                            $container->getContainer()->get('ipermisoservice'),
+                            $container->getContainer()->get('iusuariotiposervice')
+                        );
+                        break;
+                    case 'iclienteservice':
+                        $controller = new $controller_name(
+                            $container->getContainer()->get('iclienteservice'),
+                            $container->getContainer()->get('iusuarioservice')
+                        );
+                        break;
+                    case 'iventadetalleservice':
+                        $controller = new $controller_name(
+                            $container->getContainer()->get('iventadetalleservice'),
+                            $container->getContainer()->get('iventaservice'),
+                            $container->getContainer()->get('iproductoservice')
+
+                        );
                         break;
                     default:
                         $controller = new $controller_name($container->getContainer()->get($service_name));

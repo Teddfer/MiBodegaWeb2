@@ -4,9 +4,9 @@
 
 {{--@section('content')--}}
 <div class="container">
-    <form action="{{URL.'categoria/save'}}" method="POST" id="myForm">
+    <form action="{{URL.'marca/save'}}" method="POST" id="myForm">
         <div class="form-group">
-            <input type="hidden" name="IdCategoria" value="{{$data->IdCategoria}}">
+            <input type="hidden" name="IdMarca" value="{{$data->IdMarca}}">
         </div>
         <div class="row">
             <div class="col">
@@ -34,5 +34,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="{{URL}}js/mis_scripts/validate.js"></script>
 <script src="{{URL}}js/mis_scripts/show_errors_validations.js"></script>
-<script src="{{URL}}js/mis_scripts/categoria.js"></script>
+<script src="{{URL}}js/mis_scripts/marca.js"></script>
 {{--@endsection--}}

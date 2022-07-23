@@ -6,7 +6,7 @@ use App\Interfaces\IClienteService;
 use App\Models\ClienteModel;
 use Libs\Database;
 
-class ProductoService implements IClienteService
+class ClienteService implements IClienteService
 {
     private $db;
 

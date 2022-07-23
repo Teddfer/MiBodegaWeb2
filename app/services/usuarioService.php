@@ -26,6 +26,7 @@ class UsuarioService implements IUsuarioService
             'usuarios_tipo.Nombre as usuarios_tipo',
         )
             ->join('usuarios_tipo', 'usuarios.IdTipo', '=', 'usuarios_tipo.IdTipo')
+            ->orderByDesc('usuarios.IdUsuario')
             ->get();
 
         return $result;
@@ -49,7 +50,7 @@ class UsuarioService implements IUsuarioService
         $model->Usuario = $obj->Usuario;
         $model->Clave = $obj->Clave;
         $model->Correo = $obj->Correo;
-        $model->save();
+        return $model->save();
     }
 
     public function update($obj)
@@ -60,12 +61,12 @@ class UsuarioService implements IUsuarioService
         $model->Usuario = $obj->Usuario;
         $model->Clave = $obj->Clave;
         $model->Correo = $obj->Correo;
-        $model->save();
+        return $model->save();
     }
 
     public function delete(int $id)
     {
         $model = UsuarioModel::find($id);
-        $model->delete();
+        return $model->delete();
     }
 }

@@ -15,14 +15,49 @@ class MarcaService implements IMarcaService
         $this->db = $db;
     }
 
-    public function getAll()
-    {
-    }
-
     public function getAllSimple()
     {
-        $result = MarcaModel::select('IdMarca', 'Nombre')->get();
+        $result = MarcaModel::select(
+            'IdMarca', 'Nombre','Descripcion'
+            )
+        ->orderByDesc('marcas.IdMarca')
+        ->get();
+        
         return $result;
+    }
+    
+    public function get(int $id)
+    {
+        $model = MarcaModel::find($id);
+        if ($model == null) {
+            $model = new MarcaModel();
+        }
+
+        return $model;
+    }
+
+    public function insert($obj)
+    {
+        $model = new MarcaModel();
+        $model->IdMarca = $obj->IdMarca;
+        $model->Nombre = $obj->Nombre;
+        $model->Descripcion = $obj->Descripcion;
+        return $model->save();
+    }
+
+    public function update($obj)
+    {
+        $model = MarcaModel::find($obj->IdMarca);
+        $model->IdMarca = $obj->IdMarca;
+        $model->Nombre = $obj->Nombre;
+        $model->Descripcion = $obj->Descripcion;
+        return $model->save();
+    }
+
+    public function delete(int $id)
+    {
+        $model = MarcaModel::find($id);
+        return $model->delete();
     }
 
 }

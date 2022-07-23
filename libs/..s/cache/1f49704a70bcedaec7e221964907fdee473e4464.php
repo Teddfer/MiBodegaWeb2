@@ -42,6 +42,8 @@
         <link rel="stylesheet" href="<?php echo e(URL); ?>css/responsive.css">
         <!-- Modernizr js -->
         <script src="<?php echo e(URL); ?>js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <?php echo $__env->yieldContent('styles'); ?>
 </head>
 <body>
     <!--[if lt IE 8]>

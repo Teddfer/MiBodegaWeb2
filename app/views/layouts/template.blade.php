@@ -42,6 +42,8 @@
         <link rel="stylesheet" href="{{URL}}css/responsive.css">
         <!-- Modernizr js -->
         <script src="{{URL}}js/vendor/modernizr-2.8.3.min.js"></script>
+
+        @yield('styles')
 </head>
 <body>
     <!--[if lt IE 8]>

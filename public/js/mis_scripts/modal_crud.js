@@ -1,51 +1,63 @@
 window.addEventListener('DOMContentLoaded', () => {
-  $('a[is-modal="true"]').on('click', function(e){
+  $('a[is-modal="true"]').on('click', function (e) {
     e.preventDefault();
 
     $('#contentModal').load(this.href, function () {
       $('#modalGenerico').modal({ keyboard: true }, 'show');
+
       crud();
     });
 
-      return false;
+    return false;
   });
 });
 
 function crud() {
-  const form = document.querySelector('#myForm');
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
+  //Establecemos una referencia al formulario
+  const form = document.querySelector('#myForm');
+  configValidator(form);
+
+  form.addEventListener('submit', (e) => {
+    //Detenemos el envío de datos al servidor
+    e.preventDefault();
+
+    //Capturamos los datos del formulario
     const formdata = new FormData(form);
 
-    const url = form.action;
+    //Aquí validaríamos los datos
+    const errors = validate(form, constraints);
+    showErrors(form, errors || {});
 
-    const options = {
-      method: 'POST',
-      body: formdata
+    if (!errors) {
+      //Obtenemos la url a la que enviaremos la petición
+      const url = form.action;
+
+      fetch(url, { method: 'POST', body: formdata })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            Swal.fire({
+              title: '¡Bien!',
+              text: data.message,
+              icon: 'success',
+              showConfirmButton: true,
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Aceptar !',
+              timer: 2000
+            }).then(() => {
+              location.href = data.redirection;
+            });
+          } else {
+            new Error('Error al guardar el producto')
+          }
+        })
+        .catch(error => new Error(error))
+    } else {
+      showErrors(form, errors || {})
     }
-
-    fetch(url, { method: 'POST', body: formdata })
-      .then(res => res.text())
-      .then(data => {
-        if (data.success) {
-          Swal.fire({
-          title: '¡Bien!',
-          text: data.message,
-          icon: 'success',
-          showConfirmButton: false,
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Aceptar !',
-          timer: 2000
-        }).then(() => {
-          location.href = data.redirection;
-        });
-        } else {
-          new Error('Error al guardar el producto')
-        }
-      })
-      .catch(error => new Error(error))
   });
+
 }
 
 function remove(e) {
@@ -63,24 +75,24 @@ function remove(e) {
   }).then((result) => {
     if (result.isConfirmed) {
       fetch(action)
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          Swal.fire({
-            title: '¡Eliminado!',
-            text: data.message,
-            icon: 'success',
-            showConfirmButton: true,
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Aceptar !',
-            timer: 2000
-          }).then(() => {
-            location.href = data.redirection;
-          });                    
-        }else{
-          allert('Algo salió mal');
-        }
-      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            Swal.fire({
+              title: '¡Eliminado!',
+              text: data.message,
+              icon: 'success',
+              showConfirmButton: true,
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'Aceptar !',
+              timer: 2000
+            }).then(() => {
+              location.href = data.redirection;
+            });
+          } else {
+            alert('Algo salió mal');
+          }
+        })
     }
   })
 }
