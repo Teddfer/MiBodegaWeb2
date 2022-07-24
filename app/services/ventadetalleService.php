@@ -29,6 +29,7 @@ class VentaDetalleService implements IVentaDetalleService
         )
             ->join('ventas', 'ventasdetalle.IdVenta', '=', 'ventas.IdVenta')
             ->join('productos', 'ventasdetalle.IdProducto', '=', 'productos.IdProducto')
+            ->orderByDesc('ventasdetalle.IdVentasDetalle')
             ->get();
 
         return $result;
@@ -53,7 +54,7 @@ class VentaDetalleService implements IVentaDetalleService
         $model->Cantidad = $obj->Cantidad;
         $model->PrecioVenta = $obj->PrecioVenta;
         $model->Item = $obj->Item;
-        $model->save();
+        return $model->save();
     }
 
     public function update($obj)
@@ -65,12 +66,12 @@ class VentaDetalleService implements IVentaDetalleService
         $model->Cantidad = $obj->Cantidad;
         $model->PrecioVenta = $obj->PrecioVenta;
         $model->Item = $obj->Item;
-        $model->save();
+        return $model->save();
     }
 
     public function delete(int $id)
     {
         $model = VentaDetalleModel::find($id);
-        $model->delete();
+        return $model->delete();
     }
 }

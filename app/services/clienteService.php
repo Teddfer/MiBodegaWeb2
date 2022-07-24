@@ -31,6 +31,7 @@ class ClienteService implements IClienteService
             'usuarios.Usuario as usuarios',
         )
             ->join('usuarios', 'clientes.IdUsuario', '=', 'usuarios.IdUsuario')
+            ->orderByDesc('clientes.IdCliente')
             ->get();
 
         return $result;
@@ -59,7 +60,7 @@ class ClienteService implements IClienteService
         $model->DNI = $obj->DNI;
         $model->Nacimiento = $obj->Nacimiento;
         $model->Sexo = $obj->Sexo;
-        $model->save();
+        return $model->save();
     }
 
     public function update($obj)
@@ -75,12 +76,12 @@ class ClienteService implements IClienteService
         $model->DNI = $obj->DNI;
         $model->Nacimiento = $obj->Nacimiento;
         $model->Sexo = $obj->Sexo;
-        $model->save();
+        return $model->save();
     }
 
     public function delete(int $id)
     {
         $model = ClienteModel::find($id);
-        $model->delete();
+        return $model->delete();
     }
 }

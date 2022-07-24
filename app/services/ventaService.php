@@ -22,9 +22,10 @@ class VentaService implements IVentaService
             'ventas.IdCliente',
             'ventas.FEmision',
             'ventas.HEmision',
-            'clientes.Nombres as clientes',
+            'clientes.DNI as clientes',
         )
             ->join('clientes', 'ventas.IdCliente', '=', 'clientes.IdCliente')
+            ->orderByDesc('ventas.IdVenta')
             ->get();
 
         return $result;
@@ -47,7 +48,7 @@ class VentaService implements IVentaService
         $model->IdCliente = $obj->IdCliente;
         $model->FEmision = $obj->FEmision;
         $model->HEmision = $obj->HEmision;
-        $model->save();
+        return $model->save();
     }
 
     public function update($obj)
@@ -57,12 +58,12 @@ class VentaService implements IVentaService
         $model->IdCliente = $obj->IdCliente;
         $model->FEmision = $obj->FEmision;
         $model->HEmision = $obj->HEmision;
-        $model->save();
+        return $model->save();
     }
 
     public function delete(int $id)
     {
         $model = VentaModel::find($id);
-        $model->delete();
+        return $model->delete();
     }
 }

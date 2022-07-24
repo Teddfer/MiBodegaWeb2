@@ -34,7 +34,7 @@
                 </div> 
                 <div class="form-group">
                     <label for="">Correo</label>
-                    <input type="text" name="Correo" id="Correo" value="{{$data->Correo}}">
+                    <input type="email" name="Correo" id="Correo" value="{{$data->Correo}}">
                     <div class="messages"></div>
                 </div>
             </div>

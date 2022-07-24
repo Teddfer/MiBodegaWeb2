@@ -18,9 +18,9 @@ var constraints = {
     Direccion: {
         presence: true,
         length: {
-            minimum: 30,
-            maximum: 100,
-            message:'^Direccion debe poseer entre 30 y 100 caracteres'
+            minimum: 10,
+            maximum: 50,
+            message:'^Direccion debe poseer entre 10 y 50 caracteres'
         }
     },
     Ubicacion: {
@@ -46,10 +46,8 @@ var constraints = {
             maximum: 8,
             message:'^DNI debe poseer 8 caracteres'
         }
-    },
-    Nacimiento: {
-        presence: true,
-        dateOnly: true
+    },Nacimiento: {
+        presence: true
     },
     Sexo: {
         presence: '^Sexo debe ser masculino o femenino',
