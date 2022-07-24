@@ -54,7 +54,7 @@ var constraints = {
         length: {
             minimum: 8,
             maximum: 9,
-            message:'^Sexo debe poseer entre 8 y 9 caracter'
+            message:'^Sexo debe ser Masculino o Femenino'
         }
     }
 }
